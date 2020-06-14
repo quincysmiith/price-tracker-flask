@@ -1,0 +1,20 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pylint = "*"
+v = {editable = true,version = "*"}
+
+[packages]
+flask = "*"
+flask-wtf = "*"
+flask-bootstrap4 = "*"
+flask-sqlalchemy = "*"
+python-dateutil = "*"
+boto3 = "*"
+python-dotenv = "*"
+
+[requires]
+python_version = "3.7"
