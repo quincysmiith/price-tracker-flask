@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_bootstrap import Bootstrap
 
 # Database
@@ -149,14 +149,19 @@ def receipt_list_and_upload():
         [type]: [description]
     """    
 
-@app.route("/receipt_upload")
+    return render_template("receipt.html")
+
+@app.route("/receipt_upload", methods=['POST'])
 def upload_receipts():
     """[summary]
     """   
 
     file = request.files['file']
-    s3_resource = boto3.resource('s3')
+    # to do: 
+    # 1. check if file is a picture
+    # 2. make file public
+    #s3_resource = boto3.resource('s3')
     my_bucket = s3_resource.Bucket(S3_BUCKET)
     my_bucket.Object(file.filename).put(Body=file)
 
-    return "uploaded"    
+    return redirect(url_for("index"))   
